@@ -127,12 +127,12 @@ li {
   }
 
   button {
-    width: 3rem;
-    &.editBtn {
-      color: var(--primary-blue);
-    }
     &.removeBtn {
-      color: var(--error-red);
+      margin: 1rem;
+      background-color: var(--error-red);
+      padding: 0.5rem;
+      color: #fff;
+      border-radius: 0.5rem;
     }
   }
 
