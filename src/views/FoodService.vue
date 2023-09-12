@@ -37,10 +37,8 @@ const IsOn = computed(() => ({
 }));
 
 const isOn = ref(Array(7).fill(false));
-// Define the number of days
 const numberOfDays = 7;
 
-// Function to initialize the isOn array with false values
 const initializeIsOnArray = () => {
   const isOnArray = [];
   for (let i = 0; i < numberOfDays; i++) {

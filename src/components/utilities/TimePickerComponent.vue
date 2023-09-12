@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div
+    class="timeSelect-group"
+    v-for="(timeGroup, index) in selectedTimeGroups"
+    :key="index"
+  >
     <select v-model="selectedStartTimeIndex">
       <option value="-1" disabled>開始時間</option>
       <option
@@ -24,6 +28,7 @@
       </option>
     </select>
   </div>
+  <div class="add" @click="addTimeGroup">+</div>
 </template>
 
 <script setup>
@@ -51,46 +56,36 @@ const isDisabled = (endIndex) => {
   // 比較兩者
   return selectedStartTimeIndex.value >= endIndex;
 };
+
+const selectedTimeGroups = ref([1]);
+//新增時間群組
+const addTimeGroup = () => {
+  const newTimeGroup = {
+    selectedStartTimeIndex: -1,
+    selectedEndTimeIndex: -1,
+  };
+
+  // Push new time group
+  selectedTimeGroups.value.push(newTimeGroup);
+};
 </script>
 
 <style lang="scss">
-.open-caret {
-  transform: rotate(180deg);
-  transition: all 0.25s ease-out;
-}
-.down-caret {
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 5px 5px 0 5px;
-  border-color: #ffffff transparent transparent transparent;
-  display: inline-block;
-  margin-left: 6px;
-  top: -3px;
-  position: relative;
-  transform: rotate(0deg);
-  transition: all 0.25s ease-in;
-}
 select {
   border: solid 1px gray;
   /*：將預設的select選擇框樣式清除*/
   appearance: none;
-  -moz-appearance: none;
-  -webkit-appearance: none;
-  /*在選擇框的最右側中間顯示小箭頭圖片*/
+
+  /*在選擇框的最右側中間顯示小箭頭*/
   //
   background: url("http://ourjs.github.io/static/2015/arrow.png") no-repeat
-    scroll right center transparent; /*為下拉小箭頭留出一點位置，避免被文字覆蓋*/
-  // padding-right: 14px;
+    scroll right center transparent;
+  padding-right: 14px;
   padding: 0.5rem 0.875rem 0.5rem 0.5rem;
-  // width: 8rem;
   border-radius: 5px;
   color: gray;
   outline: none;
-
-  max-height: 3rem;
-  overflow: hidden;
-  overflow-y: scroll;
+  margin-bottom: 1rem;
 
   &:nth-child(2) {
     margin-left: 1rem;
@@ -98,5 +93,14 @@ select {
   &:focus {
     border: solid 1px var(--green);
   }
+}
+.add {
+  width: 100%;
+  background-color: var(--green);
+  text-align: center;
+  color: #ffffff;
+  border-radius: 5px;
+
+  font-size: 1.25rem;
 }
 </style>

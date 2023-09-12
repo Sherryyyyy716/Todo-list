@@ -24,7 +24,7 @@
           @click="editTodo(todo)"
           >{{ todo.title }}</span
         >
-        <!-- <button class="editBtn" @click="editTodo(todo)">Edit</button> -->
+
         <button
           v-if="editingTodoId === todo.id"
           class="removeBtn"
