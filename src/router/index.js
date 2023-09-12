@@ -27,6 +27,11 @@ const router = createRouter({
       name: "TodoList_JSON",
       component: () => import("../views/TodoList_JSON.vue"),
     },
+    {
+      path: "/FoodService",
+      name: "FoodService",
+      component: () => import("../views/FoodService.vue"),
+    },
   ],
 });
 
